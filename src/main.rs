@@ -18,6 +18,8 @@ fn main() {
 }
 
 fn rhai_test() {
-    // use rhai::*;
-    // let vm = Engine::new();
+    use rhai::*;
+    let engine = Engine::new();
+    let res = engine.eval::<i64>("40 + 2").unwrap();
+    println!("Answer: {}", res);
 }
