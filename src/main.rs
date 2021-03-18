@@ -22,4 +22,7 @@ fn rhai_test() {
     let engine = Engine::new();
     let res = engine.eval::<i64>("40 + 2").unwrap();
     println!("Answer: {}", res);
+    println!("Trying to run script...");
+    let result: Dynamic = engine.eval_file("./rhai/hello_world.rhai".into()).unwrap();
+    println!("Result: {}", result);
 }
