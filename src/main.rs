@@ -1,3 +1,25 @@
+use clap::{App, SubCommand};
+
 fn main() {
-    println!("Hello, world!");
+    let app = App::new("Embedded Scripting Languages - gluon and rhai")
+        .author("Tobias Nienhaus")
+        .about("A comparison of gluon and rhai")
+        .subcommand(SubCommand::with_name("gluon").about("Execute the gluon test"))
+        .subcommand(SubCommand::with_name("rhai").about("Execute the rhai test"));
+    let matches = app.get_matches();
+
+    if let Some(_) = matches.subcommand_matches("gluon") {
+        gluon_test();
+    } else if let Some(_) = matches.subcommand_matches("rhai") {
+        rhai_test();
+    }
+    assert!(false, "Not supported");
+}
+
+fn gluon_test() {
+}
+
+fn rhai_test() {
+    // use rhai::*;
+    // let vm = Engine::new();
 }
