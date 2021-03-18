@@ -10,3 +10,5 @@ publish = false
 [dependencies]
 clap = "~2.33.3" # For CLI args parsing
 glob = "0.3.0" # For iterating over files in a folder
+gluon = "0.17.2" # Can't use 0.17.x with Rhai for whatever reason
+# rhai = "0.19.14" # Rhai language support

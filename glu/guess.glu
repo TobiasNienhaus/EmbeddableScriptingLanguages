@@ -1,0 +1,28 @@
+let io @ { ? } = import! std.io
+let random = import! std.random
+let int = import! std.int
+let string = import! std.string
+let { Result } = import! std.result
+let { Ordering, compare } = import! std.cmp
+
+do _ = io.println "Guess a number between 1 and 100!"
+do target_number = random.thread_rng.gen_int_range 1 101
+
+let guess_number _ : () -> IO () =
+    do line = io.read_line
+    match int.parse (string.trim line) with
+    | Err _ ->
+        do _ = io.println "That is not a number!"
+        guess_number ()
+    | Ok guess ->
+        match compare guess target_number with
+        | EQ -> io.println "Correct!"
+        | LT ->
+            do _ = io.println "Wrong! Your guess is too low!"
+            guess_number ()
+        | GT ->
+            do _ = io.println "Wrong! Your guess is too high!"
+            guess_number ()
+
+// Start the first guess
+guess_number ()
