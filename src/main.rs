@@ -4,12 +4,12 @@ fn main() {
     let app = App::new("Embedded Scripting Languages - gluon and rhai")
         .author("Tobias Nienhaus")
         .about("A comparison of gluon and rhai")
-        .subcommand(SubCommand::with_name("gluon").about("Execute the gluon test"))
+        .subcommand(SubCommand::with_name("dyon").about("Execute the gluon test"))
         .subcommand(SubCommand::with_name("rhai").about("Execute the rhai test"));
     let matches = app.get_matches();
 
-    if let Some(_) = matches.subcommand_matches("gluon") {
-        println!("Gluon isn't supported anymore");
+    if let Some(_) = matches.subcommand_matches("dyon") {
+        dyon_test();
     } else if let Some(_) = matches.subcommand_matches("rhai") {
         rhai_test();
     } else {
@@ -25,4 +25,9 @@ fn rhai_test() {
     println!("Trying to run script...");
     let result: Dynamic = engine.eval_file("./rhai/hello_world.rhai".into()).unwrap();
     println!("Result: {}", result);
+}
+
+fn dyon_test() {
+    use dyon::{error, run};
+    error(run("dyon/test.dyon"));
 }

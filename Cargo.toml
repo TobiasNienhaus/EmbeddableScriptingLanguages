@@ -11,3 +11,4 @@ publish = false
 clap = "~2.33.3" # For CLI args parsing
 glob = "0.3.0" # For iterating over files in a folder
 rhai = "0.19.14" # Rhai language support
+dyon = "0.45.6"

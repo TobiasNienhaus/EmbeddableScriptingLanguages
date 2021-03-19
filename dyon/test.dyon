@@ -1,0 +1,87 @@
+fn main() {
+	println("Hello World! " + str(ret()))
+	eager_or_not()
+	colors()
+	test()
+	in_type()
+}
+
+fn ret() -> {
+	return = 2
+	return += 3
+}
+
+fn ret_false() -> {
+	println("false")
+	return false
+}
+
+fn ret_true() -> {
+	println("true")
+	return true
+}
+
+fn eager_or_not() {
+	println("Eager or not?")
+	if !(ret_false() && ret_true()) {
+		println("No")
+	}
+	if !(ret_false() and ret_true()) {
+		println("Yes")
+	}
+	if !(ret_false() * ret_true()) {
+		println("Yes")
+	}
+	if !(ret_false() ∧ ret_true()) {
+		println("Yes")
+	}
+}
+
+fn colors() {
+	println("Colors")
+	a := #00FF0AFF
+	println("Color: " + str(a))
+}
+
+fn test() {
+	a := 1.234
+	b := str(a)
+	print(a)
+	print(b)
+}
+
+fn print(x) {
+	println("Generic: " + str(x))
+}
+
+// fn print(x: f64) {
+// 	println("f64: " + str(x))
+// }
+
+fn hole(x) -> {
+	return 0
+}
+
+fn in_type() {
+	threads := []
+	x := in hole
+	push(mut threads, go hole(1))
+	push(mut threads, go hole(2))
+	push(mut threads, go hole(3))
+	push(mut threads, go hole(4))
+	push(mut threads, go hole(5))
+	push(mut threads, go hole(6))
+	push(mut threads, go hole("Hello"))
+	loop {
+		a := next(x)
+		if a != none() {
+			println("val: " + str(a))
+		} else {
+			break
+		}
+	}
+	println(typeof(threads))
+	for i len(threads) {
+		unwrap(join(thread: pop(mut threads)))
+	}
+}
